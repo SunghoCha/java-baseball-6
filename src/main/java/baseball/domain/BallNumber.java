@@ -1,0 +1,27 @@
+package baseball.domain;
+
+import java.util.Objects;
+
+public class BallNumber {
+    private int ballNumber;
+
+    public BallNumber(int ballNumber) {
+        if (ballNumber < 1 || ballNumber > 9) {
+            throw new IllegalArgumentException("유효하지 않은 값 입력");
+        }
+        this.ballNumber = ballNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BallNumber that = (BallNumber) o;
+        return ballNumber == that.ballNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ballNumber);
+    }
+}
