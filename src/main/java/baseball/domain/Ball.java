@@ -11,6 +11,16 @@ public class Ball {
         this.ballNumber = ballNumber;
     }
 
+    public BallStatus play(Ball playerBall) {
+        if (this.equals(playerBall)) {
+            return BallStatus.STRIKE;
+        }
+        if (this.ballNumber.equals(playerBall.getBallNumber())) {
+            return BallStatus.BALL;
+        }
+        return BallStatus.NOTHING;
+    }
+
     public Position getPosition() {
         return position;
     }
@@ -30,16 +40,5 @@ public class Ball {
     @Override
     public int hashCode() {
         return Objects.hash(position, ballNumber);
-    }
-
-    public BallStatus play(Ball playerBall) {
-        if (this.equals(playerBall)) {
-            return BallStatus.STRIKE;
-        }
-        if (!this.position.equals(playerBall.getPosition()) && this.ballNumber.equals(playerBall.getBallNumber())) {
-            return BallStatus.BALL;
-        }
-        return BallStatus.NOTHING;
-
     }
 }
