@@ -4,9 +4,11 @@ import java.util.Objects;
 
 public class Position {
     private final int position;
+    private final int MIN_INDEX = 1;
+    private final int MAX_INDEX = 3;
 
     public Position(int position) {
-        if (position < 1 || position > 3) {
+        if (position < MIN_INDEX || position > MAX_INDEX) {
             throw new IllegalArgumentException("유효하지 않은 자리수 값 입력");
         }
         this.position = position;

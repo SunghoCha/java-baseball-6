@@ -9,17 +9,19 @@ public class Referee {
     private int ballNumber = 0;
     private int next = 1;
 
-    public Referee(List<BallStatus> ballStatuses) {
-        this.strikeNumber = (int) ballStatuses.stream()
-                .filter(ballStatus -> ballStatus.equals(BallStatus.STRIKE))
-                .count();
-
-        this.ballNumber = (int) ballStatuses.stream()
-                .filter(ballStatus -> ballStatus.equals(BallStatus.BALL))
-                .count();
+    public Referee() {
     }
 
-    public Referee() {}
+    public Referee(List<BallStatus> ballStatuses) {
+        this.strikeNumber = getBallStatusCount(ballStatuses, BallStatus.STRIKE);
+        this.ballNumber = getBallStatusCount(ballStatuses, BallStatus.BALL);
+    }
+
+    private static int getBallStatusCount(List<BallStatus> ballStatuses, BallStatus strike) {
+        return (int) ballStatuses.stream()
+                .filter(ballStatus -> ballStatus.equals(strike))
+                .count();
+    }
 
     public void judge() {
         if (strikeNumber == 3) {

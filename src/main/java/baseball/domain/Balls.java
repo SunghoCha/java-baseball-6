@@ -11,6 +11,19 @@ public class Balls {
         this.balls = balls;
     }
 
+    public Referee play(Balls playerBalls) {
+        List<Ball> ballsList = playerBalls.getBalls();
+        List<BallStatus> ballStatuses = ballsList.stream().map(this::match).collect(Collectors.toList());
+        return new Referee(ballStatuses);
+    }
+
+    private BallStatus match(Ball playerBall) {
+        return this.balls.stream()
+                .map(ball -> ball.play(playerBall)).filter(ballStatus -> !ballStatus.equals(BallStatus.NOTHING))
+                .findAny()
+                .orElse(BallStatus.NOTHING);
+    }
+
     public List<Ball> getBalls() {
         return balls;
     }
@@ -26,18 +39,5 @@ public class Balls {
     @Override
     public int hashCode() {
         return Objects.hash(balls);
-    }
-
-    public Referee play(Balls playerBalls) {
-        List<Ball> ballsList = playerBalls.getBalls();
-        List<BallStatus> ballStatuses = ballsList.stream().map(this::match).collect(Collectors.toList());
-        return new Referee(ballStatuses);
-    }
-
-    private BallStatus match(Ball playerBall) {
-        return this.balls.stream()
-                .map(ball -> ball.play(playerBall)).filter(ballStatus -> !ballStatus.equals(BallStatus.NOTHING))
-                .findAny()
-                .orElse(BallStatus.NOTHING);
     }
 }

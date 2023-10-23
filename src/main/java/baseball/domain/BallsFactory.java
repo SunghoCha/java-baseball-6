@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class BallsFactory {
 
-
     public static Balls createBalls(List<Integer> ballNumbers) {
         List<Ball> balls = convertToBall(ballNumbers);
         return new Balls(balls);
@@ -27,8 +26,6 @@ public class BallsFactory {
         }
         return balls;
     }
-
-
 
     private static List<Integer> GenerateRandomNumber() {
         List<Integer> computer = new ArrayList<>();

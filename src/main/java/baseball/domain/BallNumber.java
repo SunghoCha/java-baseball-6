@@ -3,10 +3,12 @@ package baseball.domain;
 import java.util.Objects;
 
 public class BallNumber {
+    private final int MIN_NUMBER = 1;
+    private final int MAX_NUMBER = 9;
     private int ballNumber;
 
     public BallNumber(int ballNumber) {
-        if (ballNumber < 1 || ballNumber > 9) {
+        if (ballNumber < MIN_NUMBER || ballNumber > MAX_NUMBER) {
             throw new IllegalArgumentException("유효하지 않은 값 입력");
         }
         this.ballNumber = ballNumber;

@@ -21,10 +21,6 @@ public class Ball {
         return BallStatus.NOTHING;
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
     public BallNumber getBallNumber() {
         return ballNumber;
     }
